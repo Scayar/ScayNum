@@ -1,0 +1,24 @@
+# Core dependencies
+pyfiglet==0.8.post1
+colorama==0.4.6
+tabulate==0.9.0
+fpdf==1.7.2
+jinja2==3.1.2
+instaloader==4.10.1
+
+# Web Search enhancements
+requests==2.31.0
+beautifulsoup4==4.12.2
+urllib3==2.0.7
+
+# Phone Lookup enhancements
+phonenumbers==8.13.25
+folium==0.15.1
+
+# IP Lookup enhancements
+dnspython==2.4.2
+
+# Additional utilities
+googlesearch-python==1.2.3
+
+
