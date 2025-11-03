@@ -14,9 +14,15 @@ from jinja2 import Template
 import folium
 import urllib3
 import socket
-import whois
+try:
+    import whois
+except ImportError:
+    whois = None
 import dns.resolver
-import shodan
+try:
+    import shodan
+except ImportError:
+    shodan = None
 from collections import Counter
 
 # Disable SSL warnings

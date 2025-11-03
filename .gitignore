@@ -119,3 +119,29 @@ cython_debug/
 
 # google cookies
 .google-cookie/
+
+# ScayNum specific
+*_results/
+phone_*_results/
+ip_*_results/
+username_*_results/
+batch_*.csv
+batch_*.html
+batch_*.txt
+*.html
+*.pdf
+*.csv
+*.jpg
+*.png
+*.jpeg
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
