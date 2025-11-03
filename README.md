@@ -40,104 +40,403 @@ ScayNum is a **comprehensive OSINT (Open Source Intelligence)** platform designe
 
 ---
 
-## 🏗️ Architecture
+## 🏗️ Architecture & How It Works
 
-### System Architecture Diagram
+### Complete System Workflow
+
+```mermaid
+flowchart TD
+    Start([🚀 User Launches ScayNum]) --> Init[📋 Initialization<br/>Load Modules & Dependencies]
+    Init --> Banner[🎨 Display Banner<br/>& Welcome Screen]
+    Banner --> UpdateCheck{🔄 Check for<br/>Updates?}
+    
+    UpdateCheck -->|Yes| Update[📦 Update System<br/>Git Pull & Dependencies]
+    UpdateCheck -->|No| Menu
+    Update --> Menu[📋 Main Menu<br/>Display Options]
+    
+    Menu --> Option1[1️⃣ Phone Intelligence]
+    Menu --> Option2[2️⃣ IP Intelligence]
+    Menu --> Option3[3️⃣ Web Intelligence]
+    Menu --> Option4[4️⃣ Social Intelligence]
+    Menu --> Option5[5️⃣ Username Intelligence]
+    Menu --> Option6[6️⃣ Batch Processing]
+    Menu --> Option7[7️⃣ Update System]
+    Menu --> Option8[8️⃣ Exit]
+    
+    Option1 --> Input1[📞 Get Phone Number Input<br/>Format: +CountryCode Number]
+    Input1 --> Validate1{✅ Validate<br/>Phone Format?}
+    Validate1 -->|Invalid| Error1[❌ Show Error<br/>Return to Menu]
+    Validate1 -->|Valid| Process1[🔍 Process Phone Intelligence]
+    
+    Option2 --> Input2[🌐 Get IP Address Input<br/>Format: IPv4 or IPv6]
+    Input2 --> Validate2{✅ Validate<br/>IP Format?}
+    Validate2 -->|Invalid| Error2[❌ Show Error<br/>Return to Menu]
+    Validate2 -->|Valid| Process2[🔍 Process IP Intelligence]
+    
+    Option3 --> Input3[🔎 Get Search Query Input]
+    Input3 --> Process3[🔍 Process Web Intelligence]
+    
+    Option4 --> Input4[📸 Get Instagram Username]
+    Input4 --> Process4[🔍 Process Social Intelligence]
+    
+    Option5 --> Input5[👤 Get Username to Search]
+    Input5 --> Process5[🔍 Process Username Intelligence]
+    
+    Option6 --> BatchMenu[📊 Batch Processing Menu]
+    BatchMenu --> BatchType{Select Type}
+    BatchType -->|Phones| Batch1[📞 Batch Phone Processing<br/>Read CSV File]
+    BatchType -->|IPs| Batch2[🌐 Batch IP Processing<br/>Read CSV File]
+    Batch1 --> Process1
+    Batch2 --> Process2
+    
+    Process1 --> Collect1[📡 Collect Data from:<br/>• Phone APIs<br/>• Social Media<br/>• Data Breach DBs<br/>• Geolocation Services]
+    Process2 --> Collect2[📡 Collect Data from:<br/>• IP Geolocation APIs<br/>• Threat Intelligence<br/>• DNS Servers<br/>• Network Analysis]
+    Process3 --> Collect3[📡 Collect Data from:<br/>• DuckDuckGo<br/>• Bing Search<br/>• Google Fallback]
+    Process4 --> Collect4[📡 Collect Data from:<br/>• Instagram API<br/>• Profile Analysis<br/>• Post Analytics]
+    Process5 --> Collect5[📡 Collect Data from:<br/>• 20+ Social Platforms<br/>• Platform APIs<br/>• Username Checks]
+    
+    Collect1 --> Analyze1[🧠 Analyze Data:<br/>• Risk Assessment<br/>• Pattern Recognition<br/>• Threat Detection]
+    Collect2 --> Analyze2[🧠 Analyze Data:<br/>• Network Analysis<br/>• Threat Indicators<br/>• Risk Scoring]
+    Collect3 --> Analyze3[🧠 Analyze Data:<br/>• Result Categorization<br/>• Relevance Ranking<br/>• Content Extraction]
+    Collect4 --> Analyze4[🧠 Analyze Data:<br/>• Engagement Metrics<br/>• Fake Account Detection<br/>• Content Analysis]
+    Collect5 --> Analyze5[🧠 Analyze Data:<br/>• Visibility Scoring<br/>• Privacy Assessment<br/>• Risk Evaluation]
+    
+    Analyze1 --> Display1[📺 Display Results<br/>Terminal Output]
+    Analyze2 --> Display2[📺 Display Results<br/>Terminal Output]
+    Analyze3 --> Display3[📺 Display Results<br/>Terminal Output]
+    Analyze4 --> Display4[📺 Display Results<br/>Terminal Output]
+    Analyze5 --> Display5[📺 Display Results<br/>Terminal Output]
+    
+    Display1 --> Report1[📄 Generate Reports]
+    Display2 --> Report2[📄 Generate Reports]
+    Display3 --> Report3[📄 Generate Reports]
+    Display4 --> Report4[📄 Generate Reports]
+    Display5 --> Report5[📄 Generate Reports]
+    
+    Report1 --> Save1[💾 Save to Results Folder:<br/>• CSV Report<br/>• PDF Report<br/>• HTML Report<br/>• Interactive Map]
+    Report2 --> Save2[💾 Save to Results Folder:<br/>• CSV Report<br/>• PDF Report<br/>• HTML Report<br/>• Interactive Map]
+    Report3 --> Save3[💾 Save to Results Folder:<br/>• CSV Report<br/>• PDF Report<br/>• HTML Report]
+    Report4 --> Save4[💾 Save to Results Folder:<br/>• CSV Report<br/>• PDF Report<br/>• HTML Report<br/>• Profile Images]
+    Report5 --> Save5[💾 Save to Results Folder:<br/>• CSV Report<br/>• PDF Report<br/>• HTML Report]
+    
+    Save1 --> Continue{🔄 Continue?}
+    Save2 --> Continue
+    Save3 --> Continue
+    Save4 --> Continue
+    Save5 --> Continue
+    Error1 --> Continue
+    Error2 --> Continue
+    
+    Continue -->|Yes| Menu
+    Continue -->|No| End([👋 Exit ScayNum])
+    Option7 --> Update
+    Option8 --> End
+    
+    style Start fill:#667eea,stroke:#764ba2,stroke-width:3px,color:#fff
+    style Menu fill:#2196F3,stroke:#1976D2,stroke-width:3px,color:#fff
+    style Process1 fill:#E91E63,stroke:#C2185B,stroke-width:2px,color:#fff
+    style Process2 fill:#FF9800,stroke:#F57C00,stroke-width:2px,color:#fff
+    style Process3 fill:#9C27B0,stroke:#7B1FA2,stroke-width:2px,color:#fff
+    style Process4 fill:#00BCD4,stroke:#0097A7,stroke-width:2px,color:#fff
+    style Process5 fill:#795548,stroke:#5D4037,stroke-width:2px,color:#fff
+    style Analyze1 fill:#FFC107,stroke:#FFA000,stroke-width:2px,color:#000
+    style Analyze2 fill:#FFC107,stroke:#FFA000,stroke-width:2px,color:#000
+    style Analyze3 fill:#FFC107,stroke:#FFA000,stroke-width:2px,color:#000
+    style Analyze4 fill:#FFC107,stroke:#FFA000,stroke-width:2px,color:#000
+    style Analyze5 fill:#FFC107,stroke:#FFA000,stroke-width:2px,color:#000
+    style Save1 fill:#4CAF50,stroke:#45a049,stroke-width:2px,color:#fff
+    style Save2 fill:#4CAF50,stroke:#45a049,stroke-width:2px,color:#fff
+    style Save3 fill:#4CAF50,stroke:#45a049,stroke-width:2px,color:#fff
+    style Save4 fill:#4CAF50,stroke:#45a049,stroke-width:2px,color:#fff
+    style Save5 fill:#4CAF50,stroke:#45a049,stroke-width:2px,color:#fff
+    style End fill:#f44336,stroke:#d32f2f,stroke-width:3px,color:#fff
+```
+
+### Data Processing Pipeline
+
+```mermaid
+graph LR
+    subgraph Input["📥 INPUT LAYER"]
+        A1[Phone Number<br/>+1234567890]
+        A2[IP Address<br/>8.8.8.8]
+        A3[Search Query<br/>"John Doe"]
+        A4[Instagram Username<br/>@username]
+        A5[Username<br/>username123]
+    end
+    
+    subgraph Validation["✅ VALIDATION LAYER"]
+        B1[Format Validation<br/>Phone Number Parser]
+        B2[Format Validation<br/>IP Address Validator]
+        B3[Query Processing<br/>Smart Variations]
+        B4[Username Validation<br/>Format Check]
+        B5[Username Validation<br/>Format Check]
+    end
+    
+    subgraph Collection["📡 DATA COLLECTION LAYER"]
+        C1[API Calls<br/>Phone Lookup Services<br/>Social Media APIs<br/>Data Breach DBs]
+        C2[API Calls<br/>IP Geolocation<br/>Threat Intelligence<br/>DNS Resolution]
+        C3[Web Scraping<br/>DuckDuckGo Search<br/>Bing Search<br/>Google Fallback]
+        C4[Instagram API<br/>Instaloader<br/>Profile Data<br/>Post Analytics]
+        C5[Platform Checks<br/>20+ Social Platforms<br/>URL Verification<br/>Status Checking]
+    end
+    
+    subgraph Processing["🧠 ANALYSIS LAYER"]
+        D1[Risk Assessment<br/>Social Media Presence<br/>Breach Detection<br/>Geolocation Analysis]
+        D2[Threat Analysis<br/>Risk Scoring<br/>Network Analysis<br/>DNS Records]
+        D3[Result Ranking<br/>Categorization<br/>Relevance Scoring<br/>Content Extraction]
+        D4[Engagement Analysis<br/>Fake Detection<br/>Hashtag Analysis<br/>Content Patterns]
+        D5[Visibility Scoring<br/>Privacy Assessment<br/>Risk Evaluation<br/>Footprint Mapping]
+    end
+    
+    subgraph Output["📤 OUTPUT LAYER"]
+        E1[Terminal Display<br/>Colored Output<br/>Formatted Tables]
+        E2[CSV Reports<br/>Spreadsheet Format<br/>Data Export]
+        E3[PDF Reports<br/>Professional Docs<br/>Printable Format]
+        E4[HTML Reports<br/>Interactive Web<br/>Visualizations]
+        E5[Interactive Maps<br/>Geolocation Display<br/>Coordinate Mapping]
+    end
+    
+    A1 --> B1 --> C1 --> D1 --> E1
+    A1 --> B1 --> C1 --> D1 --> E2
+    A1 --> B1 --> C1 --> D1 --> E3
+    A1 --> B1 --> C1 --> D1 --> E4
+    A1 --> B1 --> C1 --> D1 --> E5
+    
+    A2 --> B2 --> C2 --> D2 --> E1
+    A2 --> B2 --> C2 --> D2 --> E2
+    A2 --> B2 --> C2 --> D2 --> E3
+    A2 --> B2 --> C2 --> D2 --> E4
+    A2 --> B2 --> C2 --> D2 --> E5
+    
+    A3 --> B3 --> C3 --> D3 --> E1
+    A3 --> B3 --> C3 --> D3 --> E2
+    A3 --> B3 --> C3 --> D3 --> E3
+    A3 --> B3 --> C3 --> D3 --> E4
+    
+    A4 --> B4 --> C4 --> D4 --> E1
+    A4 --> B4 --> C4 --> D4 --> E2
+    A4 --> B4 --> C4 --> D4 --> E3
+    A4 --> B4 --> C4 --> D4 --> E4
+    
+    A5 --> B5 --> C5 --> D5 --> E1
+    A5 --> B5 --> C5 --> D5 --> E2
+    A5 --> B5 --> C5 --> D5 --> E3
+    A5 --> B5 --> C5 --> D5 --> E4
+    
+    style Input fill:#E3F2FD,stroke:#1976D2,stroke-width:2px
+    style Validation fill:#FFF3E0,stroke:#F57C00,stroke-width:2px
+    style Collection fill:#F3E5F5,stroke:#7B1FA2,stroke-width:2px
+    style Processing fill:#E8F5E9,stroke:#388E3C,stroke-width:2px
+    style Output fill:#FFEBEE,stroke:#C62828,stroke-width:2px
+```
+
+### Detailed System Architecture
 
 ```mermaid
 graph TB
-    A[User Input] --> B[Main Entry Point<br/>main.py]
-    B --> C[Core Module<br/>core.py]
+    subgraph User["👤 USER INTERFACE"]
+        UI1[Command Line Interface<br/>Terminal/Console]
+        UI2[Interactive Menu<br/>Option Selection]
+        UI3[Real-time Feedback<br/>Progress Display]
+    end
     
-    C --> D[Phone Intelligence<br/>phone_intelligence.py]
-    C --> E[IP Intelligence<br/>ip_intelligence.py]
-    C --> F[Web Intelligence<br/>web_intelligence.py]
-    C --> G[Social Intelligence<br/>social_intelligence.py]
-    C --> H[Username Intelligence<br/>username_intelligence.py]
+    subgraph Core["🧠 CORE SYSTEM"]
+        C1[Main Entry Point<br/>main.py]
+        C2[Core Module<br/>core.py<br/>Menu & Navigation]
+        C3[Error Handling<br/>Exception Management]
+        C4[Update System<br/>Git Integration]
+    end
     
-    D --> I[External APIs<br/>Phone Lookup Services]
-    E --> J[IP Geolocation<br/>Threat Intelligence]
-    F --> K[Search Engines<br/>DuckDuckGo, Bing, Google]
-    G --> L[Instagram API<br/>Instaloader]
-    H --> M[Social Platforms<br/>20+ Platforms]
+    subgraph Modules["🔧 INTELLIGENCE MODULES"]
+        M1[Phone Intelligence<br/>Phone Lookup<br/>Social Discovery<br/>Breach Check]
+        M2[IP Intelligence<br/>Geolocation<br/>Threat Intel<br/>DNS Analysis]
+        M3[Web Intelligence<br/>Multi-Engine Search<br/>Categorization<br/>Content Extraction]
+        M4[Social Intelligence<br/>Instagram Analysis<br/>Profile Analytics<br/>Engagement Metrics]
+        M5[Username Intelligence<br/>Platform Checking<br/>Visibility Scoring<br/>Privacy Assessment]
+    end
     
-    D --> N[Report Generation<br/>CSV, PDF, HTML]
-    E --> N
-    F --> N
-    G --> N
-    H --> N
+    subgraph Data["📡 DATA SOURCES"]
+        D1[Phone APIs<br/>Carrier Info<br/>Geolocation]
+        D2[Social Media APIs<br/>Profile Data<br/>Public Records]
+        D3[Search Engines<br/>DuckDuckGo<br/>Bing<br/>Google]
+        D4[Threat Intelligence<br/>AbuseIPDB<br/>VirusTotal<br/>OTX]
+        D5[DNS Servers<br/>Record Resolution<br/>Reverse Lookup]
+        D6[Instagram API<br/>Instaloader<br/>Profile & Posts]
+    end
     
-    N --> O[Output Files<br/>Results Folder]
+    subgraph Processing["⚙️ DATA PROCESSING"]
+        P1[Data Collection<br/>API Requests<br/>Web Scraping]
+        P2[Data Validation<br/>Format Checking<br/>Error Handling]
+        P3[Data Analysis<br/>Pattern Recognition<br/>Risk Assessment]
+        P4[Data Enrichment<br/>Cross-referencing<br/>Correlation]
+    end
     
-    style A fill:#667eea,stroke:#764ba2,stroke-width:2px,color:#fff
-    style B fill:#4CAF50,stroke:#45a049,stroke-width:2px,color:#fff
-    style C fill:#2196F3,stroke:#1976D2,stroke-width:2px,color:#fff
-    style D fill:#E91E63,stroke:#C2185B,stroke-width:2px,color:#fff
-    style E fill:#FF9800,stroke:#F57C00,stroke-width:2px,color:#fff
-    style F fill:#9C27B0,stroke:#7B1FA2,stroke-width:2px,color:#fff
-    style G fill:#00BCD4,stroke:#0097A7,stroke-width:2px,color:#fff
-    style H fill:#795548,stroke:#5D4037,stroke-width:2px,color:#fff
-    style N fill:#FFC107,stroke:#FFA000,stroke-width:2px,color:#000
-    style O fill:#4CAF50,stroke:#45a049,stroke-width:2px,color:#fff
+    subgraph Reports["📄 REPORT GENERATION"]
+        R1[CSV Generator<br/>Spreadsheet Format]
+        R2[PDF Generator<br/>FPDF Library]
+        R3[HTML Generator<br/>Jinja2 Templates]
+        R4[Map Generator<br/>Folium Maps]
+    end
+    
+    subgraph Output["💾 OUTPUT"]
+        O1[Results Folder<br/>Organized Storage]
+        O2[CSV Files<br/>Data Export]
+        O3[PDF Reports<br/>Documentation]
+        O4[HTML Reports<br/>Interactive View]
+        O5[Map Files<br/>Geolocation Display]
+    end
+    
+    UI1 --> C1
+    UI2 --> C1
+    UI3 --> C1
+    
+    C1 --> C2
+    C2 --> C3
+    C2 --> C4
+    C2 --> M1
+    C2 --> M2
+    C2 --> M3
+    C2 --> M4
+    C2 --> M5
+    
+    M1 --> D1
+    M1 --> D2
+    M2 --> D2
+    M2 --> D4
+    M2 --> D5
+    M3 --> D3
+    M4 --> D6
+    M5 --> D2
+    
+    M1 --> P1
+    M2 --> P1
+    M3 --> P1
+    M4 --> P1
+    M5 --> P1
+    
+    P1 --> P2
+    P2 --> P3
+    P3 --> P4
+    
+    P4 --> R1
+    P4 --> R2
+    P4 --> R3
+    P4 --> R4
+    
+    R1 --> O1
+    R2 --> O1
+    R3 --> O1
+    R4 --> O1
+    
+    O1 --> O2
+    O1 --> O3
+    O1 --> O4
+    O1 --> O5
+    
+    style User fill:#667eea,stroke:#764ba2,stroke-width:2px,color:#fff
+    style Core fill:#4CAF50,stroke:#45a049,stroke-width:2px,color:#fff
+    style Modules fill:#FF9800,stroke:#F57C00,stroke-width:2px,color:#fff
+    style Data fill:#9C27B0,stroke:#7B1FA2,stroke-width:2px,color:#fff
+    style Processing fill:#00BCD4,stroke:#0097A7,stroke-width:2px,color:#fff
+    style Reports fill:#E91E63,stroke:#C2185B,stroke-width:2px,color:#fff
+    style Output fill:#795548,stroke:#5D4037,stroke-width:2px,color:#fff
 ```
 
-### Module Flow Diagram
-
-```mermaid
-flowchart LR
-    Start([Start ScayNum]) --> Menu{Main Menu}
-    
-    Menu -->|Option 1| Phone[Phone Intelligence]
-    Menu -->|Option 2| IP[IP Intelligence]
-    Menu -->|Option 3| Web[Web Intelligence]
-    Menu -->|Option 4| Social[Social Intelligence]
-    Menu -->|Option 5| User[Username Intelligence]
-    Menu -->|Option 6| Batch[Batch Processing]
-    Menu -->|Option 7| Update[Update System]
-    Menu -->|Option 8| Exit([Exit])
-    
-    Phone --> Process[Process Data]
-    IP --> Process
-    Web --> Process
-    Social --> Process
-    User --> Process
-    Batch --> Process
-    
-    Process --> Analyze[Analyze Results]
-    Analyze --> Report[Generate Reports]
-    Report --> Save[Save to Folder]
-    Save --> Menu
-    
-    Update --> Menu
-    
-    style Start fill:#4CAF50,stroke:#45a049,stroke-width:2px,color:#fff
-    style Menu fill:#2196F3,stroke:#1976D2,stroke-width:2px,color:#fff
-    style Process fill:#FF9800,stroke:#F57C00,stroke-width:2px,color:#fff
-    style Report fill:#9C27B0,stroke:#7B1FA2,stroke-width:2px,color:#fff
-    style Exit fill:#f44336,stroke:#d32f2f,stroke-width:2px,color:#fff
-```
-
-### Data Flow Diagram
+### Complete Data Flow Sequence
 
 ```mermaid
 sequenceDiagram
+    autonumber
     participant User
-    participant Main
-    participant Module
-    participant API
-    participant Analyzer
-    participant Reporter
+    participant Main as Main Entry Point
+    participant Core as Core Module
+    participant Module as Intelligence Module
+    participant API as External APIs
+    participant Analyzer as Data Analyzer
+    participant Reporter as Report Generator
+    participant FileSystem as File System
     
-    User->>Main: Input Query/Target
-    Main->>Module: Route to Module
-    Module->>API: Request Data
-    API-->>Module: Return Data
-    Module->>Analyzer: Process Data
-    Analyzer-->>Module: Analysis Results
-    Module->>Reporter: Generate Reports
-    Reporter-->>Module: CSV/PDF/HTML
-    Module-->>User: Display Results
-    Module-->>User: Save Files
+    User->>Main: Launch ScayNum
+    Main->>Core: Initialize Application
+    Core->>User: Display Menu Options
+    
+    User->>Core: Select Option (1-8)
+    Core->>Core: Validate Selection
+    
+    alt Option 1-5: Intelligence Module
+        Core->>Module: Initialize Module
+        Module->>User: Request Input Data
+        User->>Module: Provide Input (Phone/IP/Query/Username)
+        Module->>Module: Validate Input Format
+        
+        alt Invalid Input
+            Module->>User: Show Error Message
+            Module->>Core: Return to Menu
+        else Valid Input
+            Module->>API: Send API Request(s)
+            API-->>Module: Return Raw Data
+            
+            loop Multiple Data Sources
+                Module->>API: Additional Requests
+                API-->>Module: Additional Data
+            end
+            
+            Module->>Analyzer: Process Raw Data
+            Analyzer->>Analyzer: Data Cleaning
+            Analyzer->>Analyzer: Pattern Recognition
+            Analyzer->>Analyzer: Risk Assessment
+            Analyzer->>Analyzer: Correlation Analysis
+            Analyzer-->>Module: Analyzed Results
+            
+            Module->>User: Display Results in Terminal
+            Module->>Reporter: Generate Reports
+            
+            Reporter->>Reporter: Create CSV Report
+            Reporter->>Reporter: Create PDF Report
+            Reporter->>Reporter: Create HTML Report
+            Reporter->>Reporter: Create Interactive Map (if applicable)
+            
+            Reporter->>FileSystem: Save All Reports
+            FileSystem-->>Reporter: Confirmation
+            Reporter-->>Module: Reports Generated
+            
+            Module->>User: Show Save Location
+        end
+        
+    else Option 6: Batch Processing
+        Core->>Module: Initialize Batch Module
+        Module->>User: Request CSV File Path
+        User->>Module: Provide File Path
+        Module->>FileSystem: Read CSV File
+        FileSystem-->>Module: File Data
+        
+        loop Each Row in CSV
+            Module->>Module: Process Single Entry
+            Note over Module: Same flow as single entry
+        end
+        
+        Module->>Reporter: Generate Batch Summary
+        Reporter->>FileSystem: Save Batch Reports
+        
+    else Option 7: Update System
+        Core->>Core: Check Git Status
+        Core->>Core: Fetch Updates
+        Core->>User: Show Available Updates
+        User->>Core: Confirm Update
+        Core->>Core: Pull Latest Code
+        Core->>Core: Update Dependencies
+        Core->>User: Show Update Status
+        
+    else Option 8: Exit
+        Core->>User: Display Thank You Message
+        Core->>Main: Exit Application
+    end
+    
+    alt Continue Processing
+        Module->>Core: Return to Menu
+    else Exit
+        Module->>Main: Exit Application
+    end
 ```
 
 ---
