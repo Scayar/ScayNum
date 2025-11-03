@@ -159,7 +159,7 @@ graph LR
     subgraph Input["📥 INPUT LAYER"]
         A1[Phone Number<br/>+1234567890]
         A2[IP Address<br/>8.8.8.8]
-        A3[Search Query<br/>"John Doe"]
+        A3["Search Query<br/>John Doe"]
         A4[Instagram Username<br/>@username]
         A5[Username<br/>username123]
     end
